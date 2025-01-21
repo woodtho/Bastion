@@ -1,0 +1,169 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bastion Simulator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Bastion Simulator</h1>
+  </header>
+
+  <main>
+    <!-- Collapsible for Bastion & Player Info -->
+    <section class="collapsible" data-collapsed="false" id="info-section">
+      <div class="collapsible-header" onclick="toggleCollapse(this)">Bastion & Player Info</div>
+      <div class="collapsible-content">
+        <div class="info-display" id="bastion-info-container"></div>
+       <span id="bastionDescOutput"></span>
+       <span id="bastionQuirkOutput"></span>
+        <section class="collapsible" data-collapsed="true">
+          <div class="collapsible-header" onclick="toggleCollapse(this)">Edit</div>
+          <div class="collapsible-content">
+            <div class="info-form" style="justify-content: center;flex-direction: column;">
+              <span>
+              <label for="ownerNameInput">Owner:</label>
+              <input type="text" id="ownerNameInput" />
+                
+              </span>
+              <span>
+                 <label for="bastionNameInput">Name:</label>
+              <input type="text" id="bastionNameInput" />
+              </span>
+             <span>
+                <label for="ownerLevelInput">Level:</label>
+              <input type="number" id="ownerLevelInput" value="1" min="1" max="20"/>
+             </span>
+             
+              <div id="prereqs" style="display: contents;">
+                <label><input type="checkbox" id="canUseArcaneFocus" />Arcane</label>
+                <label><input type="checkbox" id="canUseHolySymbol" />Holy</label>
+                <label><input type="checkbox" id="hasFightingStyle" />Combat</label>
+                <label><input type="checkbox" id="hasExpertise" />Expertise</label>
+              </div>
+              <button id="updateInfoBtn" style="width: min-content;">Update</button>
+            </div>
+            <div id="bastion-description-ui" style="margin: 10px 0px;">
+              <h4>Description</h4>
+
+                <select id="bastionDescDropdown"></select>
+                <input type="number" id="bastionDescNumber" value="0" min="0" max="100" style="display:none;"/>
+                <button id="bastionDescRollBtn">Roll D100</button>
+                <div>
+              <textarea id="bastionDescCustom" rows="2" placeholder="Custom Description..."></textarea>
+              <button id="bastionDescApplyCustom" style="display:grid">Apply Description</button>
+                  
+                </div>
+              
+            </div>
+            <div id="bastion-quirk-ui" style="margin: 10px 0px;">
+              <h4>Quirk</h4>
+                <select id="bastionQuirkDropdown"></select>
+                <input type="number" id="bastionQuirkNumber" value="0" min="0" max="100"  style="display:none;" />
+                <button id="bastionQuirkRollBtn">Roll D100</button>
+              <div>
+              <textarea id="bastionQuirkCustom" rows="2" placeholder="Custom Quirk..."></textarea>
+              <button id="bastionQuirkApplyCustom" style="display:grid">Apply Quirk</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- Finances -->
+    <section class="collapsible" data-collapsed="false" id="finances-section">
+      <div class="collapsible-header" onclick="toggleCollapse(this)">Finances</div>
+      <div class="collapsible-content">
+        <div class="info-display">
+      
+            <label for="financeChange">Amount (GP):</label>
+            <input type="number" id="financeChange" value="0" />
+            <button id="addMoneyBtn">+ Add</button>
+            <button id="removeMoneyBtn">- Remove</button>
+          <p id="finances-info" style="margin-top:10px;"></p>
+          </div>
+      </div>
+    </section>
+
+    <!-- Basic Facilities -->
+    <section class="collapsible" data-collapsed="false" id="basic-facility-section">
+      <div class="collapsible-header" onclick="toggleCollapse(this)">Add Basic Facility</div>
+      <div class="collapsible-content">
+        <label for="basicFacilityType">Type:</label>
+        <select id="basicFacilityType">
+          <option value="Bedroom">Bedroom</option>
+          <option value="Courtyard">Courtyard</option>
+          <option value="Dining Room">Dining</option>
+          <option value="Kitchen">Kitchen</option>
+          <option value="Parlor">Parlor</option>
+          <option value="Storage">Storage</option>
+        </select>
+        <label for="basicFacilitySpace">Space:</label>
+        <select id="basicFacilitySpace">
+          <option value="Cramped">Cramped</option>
+          <option value="Roomy">Roomy</option>
+          <option value="Vast">Vast</option>
+        </select>
+        <button id="addBasicFacilityBtn">Add</button>
+      </div>
+    </section>
+
+    <!-- Special Facilities -->
+    <section class="collapsible" data-collapsed="false" id="special-facility-section">
+      <div class="collapsible-header" onclick="toggleCollapse(this)">Add Special Facility</div>
+      <div class="collapsible-content">
+        <label for="specialFacilitySelect">Facility:</label>
+        <select id="specialFacilitySelect"></select>
+        <label for="specialFacilitySpace">Space:</label>
+        <select id="specialFacilitySpace">
+          <option value="Cramped">Cramped</option>
+          <option value="Roomy">Roomy</option>
+          <option value="Vast">Vast</option>
+        </select>
+        <button id="addSpecialFacilityBtn">Add</button>
+      </div>
+    </section>
+
+    <!-- Facilities list -->
+    <section class="collapsible" data-collapsed="false" id="facilities-section">
+      <div class="collapsible-header" onclick="toggleCollapse(this)">Facilities</div>
+      <div class="collapsible-content" id="facilities-list"></div>
+    </section>
+
+    <!-- Orders -->
+    <section class="collapsible" data-collapsed="false" id="orders-section">
+      <div class="collapsible-header" onclick="toggleCollapse(this)">Orders</div>
+      <div class="collapsible-content">
+        <label for="facilityOrderSelect">Facility:</label>
+        <select id="facilityOrderSelect"></select>
+        <label for="orderTypeSelect">Order:</label>
+        <select id="orderTypeSelect"></select>
+        <button id="issueOrderBtn">Issue</button>
+        <p id="orderResult"></p>
+      </div>
+    </section>
+
+    <!-- Turn controls -->
+    <div id="controls">
+      <button id="nextTurnBtn">Next Turn</button>
+    </div>
+
+    <!-- Event Log -->
+    <section class="collapsible" data-collapsed="false" id="eventLogSection">
+      <div class="collapsible-header" onclick="toggleCollapse(this)">Event Log</div>
+      <div class="collapsible-content" id="event-log"></div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; Bastion Simulator</p>
+  </footer>
+
+  <!-- JS module -->
+  <script type="module" src="main.mjs"></script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+/* style.css */
+
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Times New Roman", serif;
+  background-color: #f9f5ea;
+  color: #2f1f0b;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #4a3b2c;
+  color: #f8f0db;
+  padding: 0.8rem 1rem;
+  text-align: center;
+  border-bottom: 2px solid #2f1f0b;
+}
+
+main {
+  flex: 1;
+  padding: 0.5rem 1rem;
+}
+
+/* Collapsibles */
+.collapsible {
+  border: 1px solid #c2b28f;
+  margin-bottom: 0.8rem;
+  background-color: #fffaf0;
+}
+
+.collapsible-header {
+  background-color: #ede2cf;
+  padding: 0.4rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 1px solid #c2b28f;
+  user-select: none;
+}
+
+.collapsible-header:hover {
+  background-color: #e0d3bc;
+}
+
+.collapsible-content {
+  padding: 0.6rem;
+  display: block;
+}
+
+.collapsible[data-collapsed="true"] .collapsible-content {
+  display: none;
+}
+
+/* Display areas */
+.info-display {
+  margin-bottom: 0.5rem;
+}
+
+/* Form elements */
+.info-form,
+#basic-facility-section .collapsible-content,
+#special-facility-section .collapsible-content {
+  display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: stretch;
+    /*flex-direction: column;*/
+    align-content: flex-start;
+    /*justify-content: center;*/
+}
+
+
+label {
+  font-weight: bold;
+  color: #2f1f0b;
+  margin-right: 0.3rem;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  padding: 0.2rem 0.4rem;
+  border: 1px solid #8a7963;
+  background-color: #faf4e8;
+  color: #2f1f0b;
+  font-family: "Times New Roman", serif;
+  border-radius: 2px;
+  min-width: 60px;
+}
+
+/* Buttons */
+button {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #8a7963;
+  background-color: #dcc9a6;
+  color: #2f1f0b;
+  cursor: pointer;
+  font-family: "Times New Roman", serif;
+  border-radius: 2px;
+}
+
+button:hover {
+  background-color: #c8b397;
+}
+
+/* Controls */
+#controls {
+  margin: 1rem 0;
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* Facilities list */
+#facilities-list ul {
+  list-style-type: none;
+  margin-left: 0.5rem;
+}
+
+#facilities-list ul li {
+  margin-bottom: 0.4rem;
+}
+
+/* Event log */
+#event-log {
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px dashed #c2b28f;
+  padding: 0.4rem;
+  background-color: #fff;
+}
+
+#event-log p {
+  margin-bottom: 0.4rem;
+}
+
+footer {
+  background-color: #4a3b2c;
+  color: #f8f0db;
+  text-align: center;
+  padding: 0.8rem 1rem;
+  border-top: 2px solid #2f1f0b;
+}
