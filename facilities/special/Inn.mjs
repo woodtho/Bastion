@@ -1,21 +1,35 @@
+// FILE: ./facilities/special/Inn.mjs
+
+/*
+An Inn is always Vast. It removes extra exhaustion on a Long Rest, 
+and "Empower -> Well Rested" for a 1-hour Long Rest if you remain for 7 days.
+*/
+
 export const Inn = {
   name: "Inn",
-  levelReq: 9,         // Must be level 9 or higher
+  levelReq: 9,
   prereq: "None",
-  canEnlarge: false,    // The text gives it a starting space of Vast with no mention of further enlargement
+  canEnlarge: false,
+  defaultSpace: "Vast", // No enlargement
+  // No enlargeCosts since it cannot be enlarged
   baseOrderOptions: ["Empower"],
   desc: `
-    An Inn is a place of respite for travelers, offering comfortable lodgings and unique
-    rest benefits. Sweet Dreams grants additional Long Rest recovery (remove extra
-    exhaustion, awareness of curses). Empower: Well Rested gives a 1-hour Long Rest
-    to all who remain here for 7 consecutive days of Bastion Turns.
+    <h2>Inn (Level 9)</h2>
+    <p><strong>Default Space:</strong> Vast (cannot enlarge further)</p>
+    <p><strong>Hirelings:</strong> 2</p>
+    <p><strong>Order:</strong> Empower -> Well Rested</p>
+    <ul>
+      <li><strong>Sweet Dreams.</strong> Remove an extra exhaustion on any Long Rest here, 
+          and become aware of curses affecting you.</li>
+      <li><strong>Well Rested (7 days).</strong> If you remain for 7 days, your next Long Rest 
+          only takes 1 hour.</li>
+    </ul>
   `,
   subOrders: {
     Empower: [
-      {
-        label: "Well Rested (7 days of dedicated relaxation)",
-        key: "InnWellRested"
-      },
+      { label: "Well Rested (7 days)", key: "InnWellRested" },
     ],
   },
+  // Example: no randomEffects
+  randomEffects: []
 };

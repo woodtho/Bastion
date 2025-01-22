@@ -6,6 +6,7 @@ import { Kitchen } from "./Kitchen.mjs";
 import { Parlor } from "./Parlor.mjs";
 import { Storage } from "./Storage.mjs";
 
+
 export const BASIC_FACILITIES_DEFINITIONS = [
   Bedroom,
   Courtyard,
